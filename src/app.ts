@@ -1,60 +1,130 @@
-// const userName = 'Max';
-// // userName = 'Maximilian';
-// let age = 30;
+abstract class Department {
+  static fiscalYear = 2020;
+  // private readonly id: string;
+  // private name: string;
+  protected employees: string[] = [];
 
-// age = 29;
+  constructor(protected readonly id: string, public name: string) {
+    // this.id = id;
+    // this.name = n;
+    // console.log(Department.fiscalYear);
+  }
 
-// function add(a: number, b: number) {
-//   let result;
-//   result = a + b;
-//   return result;
-// }
+  static createEmployee(name: string) {
+    return { name: name };
+  }
 
-// if (age > 20) {
-//   let isOld = true;
-// }
+  abstract describe(this: Department): void;
 
-// console.log(isOld);
+  addEmployee(employee: string) {
+    // validation etc
+    // this.id = 'd2';
+    this.employees.push(employee);
+  }
 
-// console.log(result);
+  printEmployeeInformation() {
+    console.log(this.employees.length);
+    console.log(this.employees);
+  }
+}
 
-// const add = (a: number, b: number = 1) => a + b;
+class ITDepartment extends Department {
+  admins: string[];
+  constructor(id: string, admins: string[]) {
+    super(id, 'IT');
+    this.admins = admins;
+  }
 
-// const printOutput: (a: number | string) => void = output => console.log(output);
+  describe() {
+    console.log('IT Department - ID: ' + this.id);
+  }
+}
 
-// const button = document.querySelector('button');
+class AccountingDepartment extends Department {
+  private lastReport: string;
+  private static instance: AccountingDepartment;
 
-// if (button) {
-//   button.addEventListener('click', event => console.log(event));
-// }
+  get mostRecentReport() {
+    if (this.lastReport) {
+      return this.lastReport;
+    }
+    throw new Error('No report found.');
+  }
 
-// printOutput(add(5));
+  set mostRecentReport(value: string) {
+    if (!value) {
+      throw new Error('Please pass in a valid value!');
+    }
+    this.addReport(value);
+  }
 
-const hobbies = ['Sports', 'Cooking'];
-const activeHobbies = ['Hiking'];
+  private constructor(id: string, private reports: string[]) {
+    super(id, 'Accounting');
+    this.lastReport = reports[0];
+  }
 
-activeHobbies.push(...hobbies);
+  static getInstance() {
+    if (AccountingDepartment.instance) {
+      return this.instance;
+    }
+    this.instance = new AccountingDepartment('d2', []);
+    return this.instance;
+  }
 
-const person = {
-  firstName: 'Max',
-  age: 30
-};
+  describe() {
+    console.log('Accounting Department - ID: ' + this.id);
+  }
 
-const copiedPerson = { ...person };
+  addEmployee(name: string) {
+    if (name === 'Max') {
+      return;
+    }
+    this.employees.push(name);
+  }
 
-const add = (...numbers: number[]) => {
-  return numbers.reduce((curResult, curValue) => {
-    return curResult + curValue;
-  }, 0);
-};
+  addReport(text: string) {
+    this.reports.push(text);
+    this.lastReport = text;
+  }
 
-const addedNumbers = add(5, 10, 2, 3.7);
-console.log(addedNumbers);
+  printReports() {
+    console.log(this.reports);
+  }
+}
 
-const [hobby1, hobby2, ...remainingHobbies] = hobbies;
+const employee1 = Department.createEmployee('Max');
+console.log(employee1, Department.fiscalYear);
 
-console.log(hobbies, hobby1, hobby2);
+const it = new ITDepartment('d1', ['Max']);
 
-const { firstName: userName, age } = person;
+it.addEmployee('Max');
+it.addEmployee('Manu');
 
-console.log(userName, age, person);
+// it.employees[2] = 'Anna';
+
+it.describe();
+it.name = 'NEW NAME';
+it.printEmployeeInformation();
+
+console.log(it);
+
+// const accounting = new AccountingDepartment('d2', []);
+const accounting = AccountingDepartment.getInstance();
+const accounting2 = AccountingDepartment.getInstance();
+
+console.log(accounting, accounting2);
+
+accounting.mostRecentReport = 'Year End Report';
+accounting.addReport('Something went wrong...');
+console.log(accounting.mostRecentReport);
+
+accounting.addEmployee('Max');
+accounting.addEmployee('Manu');
+
+// accounting.printReports();
+// accounting.printEmployeeInformation();
+accounting.describe();
+
+// const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
+
+// accountingCopy.describe();
