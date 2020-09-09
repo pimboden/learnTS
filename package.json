@@ -1,0 +1,16 @@
+{
+  "name": "undesrtanding-ts",
+  "version": "1.0.0",
+  "description": "learning typescript",
+  "main": "app.js",
+  "author": "CodeHacker",
+  "license": "ISC",
+  "scripts": {
+    "tsc": "tsc app.ts",
+    "start": "lite-server"
+  },
+  "devDependencies": {
+    "lite-server": "^2.5.4",
+    "typescript": "^4.0.2"
+  }
+}
