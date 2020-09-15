@@ -10,14 +10,15 @@
     "tsc": "tsc -w",
     "srvr": "lite-server",
     "start_old": "npm-run-all --parallel tsc srvr",
-    "start":"webpack-dev-server",
-    "build": "rimraf dist && mkdir dist && webpack"
+    "start": "webpack-dev-server",
+    "build": "webpack --config webpack.config.prod.js"
   },
   "keywords": [
     "typescript",
     "course"
   ],
   "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
     "lite-server": "^2.5.4",
     "ts-loader": "6.2.1",
     "typescript": "^3.1.2",
