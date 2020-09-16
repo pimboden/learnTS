@@ -4,8 +4,6 @@ const form = document.querySelector("form")!
 const addressInput = document.getElementById("address")! as HTMLInputElement
 const GOOGLE_API_KEY = "AIzaSyCsXI1-4sSCEkrduuyh_O7VpOQ9Y1fHoMA"
 
-declare var google: any; //Yes it exists
-
 const GOOGLE_GEOCODE_URL = "https://maps.googleapis.com/maps/api/geocode/json?address="
 type GoogleGeocodeResponse={
   results:{ geometry:{location:{lat:number, lng:number}}}[];
