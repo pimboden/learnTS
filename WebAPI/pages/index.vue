@@ -4,7 +4,7 @@
       <div class="text-center">
         <logo />
         <vuetify-logo />
-        <counter :initial="5" />
+        <counter :initial="5"/>
       </div>
       <v-card>
         <v-card-title class="headline"> Welcome to the Vuetify + Nuxt.js template </v-card-title>
@@ -27,10 +27,8 @@
               href="https://github.com/vuetifyjs/vuetify/issues"
               target="_blank"
               rel="noopener noreferrer"
-              title="contribute"
-            >
-              issue board </a
-            >.
+              title="contribute">
+              issue board </a>.
           </p>
           <p>
             Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.
@@ -63,7 +61,7 @@ export default defineComponent({
   components: {
     Logo,
     VuetifyLogo,
-    Counter,
+    Counter
   },
   setup(_props, _context) {
     const initialValue: Number = 1

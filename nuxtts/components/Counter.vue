@@ -13,7 +13,7 @@ export default defineComponent({
       default: 0,
     },
   },
-  setup(props, _context) {
+  setup(props, context) {
     const count = ref(props.initial)
     const increase = () => {
       count.value++
