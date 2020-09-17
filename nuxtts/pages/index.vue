@@ -4,6 +4,7 @@
       <div class="text-center">
         <logo />
         <vuetify-logo />
+        <counter :initial="5"/>
       </div>
       <v-card>
         <v-card-title class="headline"> Welcome to the Vuetify + Nuxt.js template </v-card-title>
@@ -54,11 +55,13 @@
 import { defineComponent, ref } from '@vue/composition-api'
 import Logo from './../components/Logo.vue'
 import VuetifyLogo from './../components/VuetifyLogo.vue'
+import Counter from './../components/Counter.vue'
 
 export default defineComponent({
   components: {
     Logo,
     VuetifyLogo,
+    Counter
   },
   setup(_props, _context) {
     const initialValue: Number = 1
